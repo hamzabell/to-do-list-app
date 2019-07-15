@@ -1,0 +1,39 @@
+
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title >My Todo</ion-title>
+     <ion-avatar class='profilepic' slot="start" (click)="openFirst()">
+          <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+      </ion-avatar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<div *ngIf="!todos">
+    <div class="ion-padding custom-skeleton">
+      <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+      <ion-skeleton-text animated></ion-skeleton-text>
+      <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
+      <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+      <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+    </div>
+</div>
+
+
+<ion-list> 
+  <ion-item-sliding *ngFor="let item of todos">
+    <ion-item lines="inset" >
+      <ion-label text-wrap> 
+       <h3>{{ item.task}}</h3>
+        Priority: {{ item.priority }}
+      </ion-label>
+        <ion-icon slot="end" name="arrow-dropdown"(click)="presentActionSheet(item.id)" ></ion-icon>
+    </ion-item>
+  </ion-item-sliding>
+</ion-list>
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="presentModal()" >
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
